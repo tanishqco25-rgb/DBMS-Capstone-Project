@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ExamFlow | Online Examination System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">EF</div><div><b>ExamFlow</b><small>Assessment Portal</small></div></div>
+    <div class="side-label">WORKSPACE</div>
+    <button class="nav-item active" data-page="overview"><span>▦</span> Overview</button>
+    <button class="nav-item" data-page="exams"><span>▤</span> Examinations</button>
+    <button class="nav-item" data-page="results"><span>▥</span> My Results</button>
+    <button class="nav-item" data-page="analytics"><span>◫</span> Analytics</button>
+    <div class="sidebar-bottom"><div class="avatar">ST</div><div class="user-mini"><b id="sideName">Guest student</b><small id="sideEnrollment">Sign in to continue</small></div><button id="logoutBtn" class="logout" title="Sign out" hidden>↗</button></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">ONLINE EXAMINATION & ASSESSMENT MANAGEMENT</div><h1 id="pageTitle">Overview</h1></div><div class="top-actions"><span class="live-dot"></span><span>System status</span><button class="profile-chip" id="profileChip">Guest</button></div></header>
+
+    <section id="loginPanel" class="login-panel">
+      <div class="login-copy"><span class="tag">STUDENT ACCESS</span><h2>Welcome to your<br><em>exam workspace.</em></h2><p>Sign in with the enrollment number and email address already stored in the project database.</p><div class="login-note">Demo account · CSE26001 · aarav@example.edu</div></div>
+      <form id="loginForm" class="login-form"><h3>Student sign in</h3><label>Enrollment number<input id="enrollment" required placeholder="e.g. CSE26001"></label><label>Registered email<input id="email" type="email" required placeholder="name@example.edu"></label><button class="primary full" type="submit">Sign in to portal <span>→</span></button><p class="form-help" id="loginMessage">Use a student record from the sample data.</p></form>
+    </section>
+
+    <section id="portal" hidden>
+      <div id="overviewPage" class="page">
+        <div class="welcome-row"><div><div class="eyebrow">YOUR ACADEMIC CONTROL CENTER</div><h2>Good to see you, <span id="welcomeName">Student</span>.</h2><p>Track examinations, attempt assessments and review your performance.</p></div><div class="date-pill" id="todayDate"></div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Active students</span><i>♙</i></div><strong id="statStudents">—</strong><small>In the database</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Examinations</span><i>▤</i></div><strong id="statExams">—</strong><small>Scheduled and recorded</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Question bank</span><i>☷</i></div><strong id="statQuestions">—</strong><small>Active questions</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Results generated</span><i>✓</i></div><strong id="statResults">—</strong><small>Processed assessments</small></article>
+        </div>
+        <div class="section-heading"><div><h3>Recent examinations</h3><p>Browse examinations available in the database.</p></div><button class="text-button" data-goto="exams">View all →</button></div>
+        <div id="recentExams" class="exam-grid"></div>
+      </div>
+
+      <div id="examsPage" class="page" hidden><div class="section-heading"><div><h3>Examinations</h3><p>Register and launch your assessments.</p></div><span class="tag">DATABASE CONNECTED</span></div><div id="allExams" class="exam-grid"></div></div>
+
+      <div id="resultsPage" class="page" hidden><div class="section-heading"><div><h3>My results</h3><p>Your processed examination scores.</p></div><button class="secondary" id="refreshResults">Refresh results</button></div><div id="resultsList" class="table-card"></div></div>
+
+      <div id="analyticsPage" class="page" hidden><div class="section-heading"><div><h3>Performance analytics</h3><p>Subject-level averages and examination rankings.</p></div></div><div id="analyticsContent"></div></div>
+    </section>
+
+    <section id="examPanel" class="exam-panel" hidden>
+      <div class="exam-toolbar"><button class="back-button" id="backToExams">← Back to examinations</button><span class="tag">ASSESSMENT IN PROGRESS</span></div>
+      <div class="exam-intro"><div><div class="eyebrow">ONLINE ASSESSMENT</div><h2 id="examTitle">Examination</h2><p id="examMeta"></p></div><div class="timer-box"><small>TIME ALLOWED</small><strong id="examDuration">—</strong></div></div>
+      <form id="attemptForm"><div id="questionList"></div><div class="submit-row"><span id="answeredCount">0 answers selected</span><button class="primary" type="submit">Submit examination <span>→</span></button></div></form>
+    </section>
+    <div id="toast" class="toast" role="status"></div>
+    <footer>ExamFlow · DBMS Capstone Project · Online Examination and Assessment Management System</footer>
+  </main>
+</div>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body></html>
